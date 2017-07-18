@@ -29,6 +29,7 @@ for file in os.listdir("./data"):
                      -i ./data/%s \
                      -all \
                      -openmp 4 \
+                     -qcache \
                      \n" % (subject, file))
     filey.writelines("module unload FreeSurfer/6.0.0-centos6_x86_64\n")
 
