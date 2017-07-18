@@ -9,14 +9,15 @@ except OSError:
     pass
 
 
-for subject_num in range(1, 2515):  # 1 -> n-1
-    i = str(subject_num).zfill(3)
-    filey = "job/sub-%s.job" % i
+for file in os.listdir("./data"):
+    subject = file[:-4]
+
+    filey = "job/%s.job" % subject
     filey = open(filey, "w")
     filey.writelines("#!/bin/bash\n")
-    filey.writelines("#SBATCH --job-name=sub-%s\n" % i)
-    filey.writelines("#SBATCH --output=.out/sub-%s.out\n" % i)
-    filey.writelines("#SBATCH --error=.out/sub-%s.err\n" % i)
+    filey.writelines("#SBATCH --job-name=%s\n" % subject)
+    filey.writelines("#SBATCH --output=.out/%s.out\n" % subject)
+    filey.writelines("#SBATCH --error=.out/%s.err\n" % subject)
     filey.writelines("#SBATCH -p large\n")
     filey.writelines("#SBATCH -n 4\n")
     filey.writelines("#SBATCH -N 4\n")
@@ -24,12 +25,12 @@ for subject_num in range(1, 2515):  # 1 -> n-1
     filey.writelines("\n")
 
     filey.writelines("module load FreeSurfer/6.0.0-centos6_x86_64\n")
-    filey.writelines("recon-all -subjid sub-%s \
-                     -i file%s.nii \
+    filey.writelines("recon-all -subjid %s \
+                     -i %s \
                      -all \
                      -openmp 4 \
-                     \n" % (i, i))
+                     \n" % (subject, file))
     filey.writelines("module unload FreeSurfer/6.0.0-centos6_x86_64\n")
 
     filey.close()
-    os.system("sbatch  " + ".job/%s.job" % i)
+    os.system("sbatch  " + ".job/%s.job" % subject)
