@@ -25,8 +25,9 @@ for file in os.listdir("./data"):
     filey.writelines("\n")
 
     filey.writelines("module load FreeSurfer/6.0.0-centos6_x86_64\n")
+    filey.writelines("export SUBJECTS_DIR=/home/aerramuzpe/surface-kljajevic-17/processed_data")
     filey.writelines("recon-all -subjid %s \
-                     -i ./data/%s \
+                     -i /home/aerramuzpe/surface-kljajevic-17/data/%s \
                      -all \
                      -openmp 4 \
                      -qcache \
