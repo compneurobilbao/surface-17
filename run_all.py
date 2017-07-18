@@ -12,7 +12,7 @@ except OSError:
 for file in os.listdir("./data"):
     subject = file[:-4]
 
-    filey = "job/%s.job" % subject
+    filey = ".job/%s.job" % subject
     filey = open(filey, "w")
     filey.writelines("#!/bin/bash\n")
     filey.writelines("#SBATCH --job-name=%s\n" % subject)
