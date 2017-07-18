@@ -21,7 +21,6 @@ for file in os.listdir("./data"):
     filey.writelines("#SBATCH --error=.out/%s.err\n" % subject)
     filey.writelines("#SBATCH -p large\n")
     filey.writelines("#SBATCH -n 4\n")
-    filey.writelines("#SBATCH -N 4\n")
     filey.writelines("#SBATCH --mem=10000\n")
     filey.writelines("\n")
 
