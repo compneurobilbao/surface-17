@@ -26,7 +26,7 @@ for file in os.listdir("./data"):
 
     filey.writelines("module load FreeSurfer/6.0.0-centos6_x86_64\n")
     filey.writelines("recon-all -subjid %s \
-                     -i %s \
+                     -i ./data/%s \
                      -all \
                      -openmp 4 \
                      \n" % (subject, file))
