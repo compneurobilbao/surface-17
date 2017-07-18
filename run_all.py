@@ -5,6 +5,7 @@ import os
 
 try:
     os.mkdir(".job/")
+    os.mkdir(".out/")
 except OSError:
     pass
 
