@@ -2,3 +2,6 @@
 .spyproject/*
 .job/*
 /results/*
+*rh*
+*lh*
+
