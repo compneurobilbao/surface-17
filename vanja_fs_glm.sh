@@ -1,4 +1,4 @@
-export SUBJECTS_DIR=/media/asier/Vanjas_Passport/FS_processed_data/
+export SUBJECTS_DIR=/media/asier/Vanjas_Passport/FS_processed_data
 export LC_NUMERIC="en_US.UTF-8"
 
 
@@ -48,4 +48,8 @@ mri_glmfit-sim \
   --cache 4 neg \
   --cwp  0.05 \
   --2spaces
+
+
+export PROC_DIR=/home/asier/git/surface-kljajevic-17
+freeview -f $SUBJECTS_DIR/fsaverage/surf/lh.inflated:overlay=$PROC_DIR/lh.g2v1/g1g2.intercept/cache.th40.neg.sig.cluster.mgh:overlay_threshold=2,5:annot=$PROC_DIR/lh.g2v1/g1g2.intercept/cache.th40.neg.sig.ocn.annot -viewport 3d
 
