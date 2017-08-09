@@ -2,173 +2,173 @@ GroupDescriptorFile 1
 Title VANJA_TEST
 Class 1
 Class 2
-Variables TOT
-Input	sub-CC110033_T1w	1	7
-Input	sub-CC110037_T1w	1	5
-Input	sub-CC110045_T1w	1	9
-Input	sub-CC110056_T1w	1	10
-Input	sub-CC110069_T1w	1	0
-Input	sub-CC110087_T1w	1	14
-Input	sub-CC110101_T1w	1	12
-Input	sub-CC110126_T1w	1	17
-Input	sub-CC110174_T1w	1	9
-Input	sub-CC110182_T1w	1	16
-Input	sub-CC110187_T1w	1	3
-Input	sub-CC110319_T1w	1	7
-Input	sub-CC110411_T1w	1	6
-Input	sub-CC110606_T1w	1	6
-Input	sub-CC112141_T1w	1	14
-Input	sub-CC120008_T1w	1	5
-Input	sub-CC120049_T1w	1	4
-Input	sub-CC120061_T1w	1	8
-Input	sub-CC120065_T1w	1	15
-Input	sub-CC120120_T1w	1	8
-Input	sub-CC120123_T1w	1	3
-Input	sub-CC120166_T1w	1	2
-Input	sub-CC120182_T1w	1	13
-Input	sub-CC120218_T1w	1	3
-Input	sub-CC120264_T1w	1	9
-Input	sub-CC120276_T1w	1	6
-Input	sub-CC120286_T1w	1	11
-Input	sub-CC120309_T1w	1	4
-Input	sub-CC120313_T1w	1	8
-Input	sub-CC120319_T1w	1	20
-Input	sub-CC120347_T1w	1	10
-Input	sub-CC120376_T1w	1	8
-Input	sub-CC120409_T1w	1	2
-Input	sub-CC120469_T1w	1	1
-Input	sub-CC120470_T1w	1	1
-Input	sub-CC120550_T1w	1	7
-Input	sub-CC120727_T1w	1	3
-Input	sub-CC120764_T1w	1	21
-Input	sub-CC120795_T1w	1	18
-Input	sub-CC120987_T1w	1	10
-Input	sub-CC121106_T1w	1	24
-Input	sub-CC121144_T1w	1	16
-Input	sub-CC121158_T1w	1	16
-Input	sub-CC121200_T1w	1	5
-Input	sub-CC121317_T1w	1	13
-Input	sub-CC121397_T1w	1	9
-Input	sub-CC121411_T1w	1	6
-Input	sub-CC121428_T1w	1	11
-Input	sub-CC121479_T1w	1	15
-Input	sub-CC121685_T1w	1	4
-Input	sub-CC121795_T1w	1	6
-Input	sub-CC122172_T1w	1	7
-Input	sub-CC122405_T1w	1	19
-Input	sub-CC122620_T1w	1	11
-Input	sub-CC210148_T1w	1	11
-Input	sub-CC210250_T1w	1	13
-Input	sub-CC210519_T1w	1	7
-Input	sub-CC212153_T1w	1	9
-Input	sub-CC220115_T1w	1	9
-Input	sub-CC220151_T1w	1	4
-Input	sub-CC220352_T1w	1	10
-Input	sub-CC220518_T1w	1	10
-Input	sub-CC220519_T1w	1	5
-Input	sub-CC221033_T1w	1	4
-Input	sub-CC221373_T1w	1	5
-Input	sub-CC221648_T1w	1	10
-Input	sub-CC310008_T1w	2	18
-Input	sub-CC310086_T1w	2	6
-Input	sub-CC310142_T1w	2	13
-Input	sub-CC310214_T1w	2	7
-Input	sub-CC310224_T1w	2	19
-Input	sub-CC310252_T1w	2	26
-Input	sub-CC310385_T1w	2	13
-Input	sub-CC310402_T1w	2	11
-Input	sub-CC310450_T1w	2	6
-Input	sub-CC310463_T1w	2	15
-Input	sub-CC310473_T1w	2	4
-Input	sub-CC312058_T1w	2	7
-Input	sub-CC312222_T1w	2	11
-Input	sub-CC320002_T1w	2	16
-Input	sub-CC320059_T1w	2	6
-Input	sub-CC320089_T1w	2	9
-Input	sub-CC320107_T1w	2	16
-Input	sub-CC320160_T1w	2	3
-Input	sub-CC320202_T1w	2	7
-Input	sub-CC320206_T1w	2	8
-Input	sub-CC320218_T1w	2	13
-Input	sub-CC320359_T1w	2	12
-Input	sub-CC320379_T1w	2	13
-Input	sub-CC320429_T1w	2	9
-Input	sub-CC320500_T1w	2	17
-Input	sub-CC320553_T1w	2	11
-Input	sub-CC320576_T1w	2	14
-Input	sub-CC320608_T1w	2	15
-Input	sub-CC320621_T1w	2	21
-Input	sub-CC320636_T1w	2	10
-Input	sub-CC320698_T1w	2	3
-Input	sub-CC320776_T1w	2	6
-Input	sub-CC320850_T1w	2	8
-Input	sub-CC320870_T1w	2	19
-Input	sub-CC320888_T1w	2	12
-Input	sub-CC320893_T1w	2	14
-Input	sub-CC321281_T1w	2	6
-Input	sub-CC321331_T1w	2	23
-Input	sub-CC321368_T1w	2	13
-Input	sub-CC321431_T1w	2	8
-Input	sub-CC321464_T1w	2	10
-Input	sub-CC321880_T1w	2	14
-Input	sub-CC321899_T1w	2	6
-Input	sub-CC322186_T1w	2	17
-Input	sub-CC410015_T1w	2	16
-Input	sub-CC410032_T1w	2	6
-Input	sub-CC410040_T1w	2	10
-Input	sub-CC410094_T1w	2	7
-Input	sub-CC410097_T1w	2	7
-Input	sub-CC410113_T1w	2	24
-Input	sub-CC410121_T1w	2	4
-Input	sub-CC410169_T1w	2	8
-Input	sub-CC410173_T1w	2	15
-Input	sub-CC410182_T1w	2	2
-Input	sub-CC410220_T1w	2	7
-Input	sub-CC410222_T1w	2	8
-Input	sub-CC410251_T1w	2	2
-Input	sub-CC410284_T1w	2	18
-Input	sub-CC410323_T1w	2	4
-Input	sub-CC410325_T1w	2	20
-Input	sub-CC410354_T1w	2	15
-Input	sub-CC410432_T1w	2	7
-Input	sub-CC412004_T1w	2	9
-Input	sub-CC412021_T1w	2	17
-Input	sub-CC420071_T1w	2	3
-Input	sub-CC420075_T1w	2	23
-Input	sub-CC420089_T1w	2	18
-Input	sub-CC420091_T1w	2	29
-Input	sub-CC420143_T1w	2	4
-Input	sub-CC420149_T1w	2	10
-Input	sub-CC420162_T1w	2	3
-Input	sub-CC420173_T1w	2	16
-Input	sub-CC420182_T1w	2	18
-Input	sub-CC420197_T1w	2	13
-Input	sub-CC420204_T1w	2	29
-Input	sub-CC420217_T1w	2	23
-Input	sub-CC420222_T1w	2	27
-Input	sub-CC420226_T1w	2	11
-Input	sub-CC420231_T1w	2	6
-Input	sub-CC420236_T1w	2	13
-Input	sub-CC420241_T1w	2	6
-Input	sub-CC420259_T1w	2	7
-Input	sub-CC420260_T1w	2	12
-Input	sub-CC420261_T1w	2	16
-Input	sub-CC420286_T1w	2	7
-Input	sub-CC420322_T1w	2	20
-Input	sub-CC420324_T1w	2	19
-Input	sub-CC420356_T1w	2	10
-Input	sub-CC420383_T1w	2	20
-Input	sub-CC420396_T1w	2	23
-Input	sub-CC420402_T1w	2	19
-Input	sub-CC420412_T1w	2	17
-Input	sub-CC420433_T1w	2	8
-Input	sub-CC420435_T1w	2	14
-Input	sub-CC420462_T1w	2	24
-Input	sub-CC420493_T1w	2	9
-Input	sub-CC420566_T1w	2	9
-Input	sub-CC420582_T1w	2	14
-Input	sub-CC420589_T1w	2	10
-Input	sub-CC420623_T1w	2	12
-Input	sub-CC420776_T1w	2	27
-Input	sub-CC420888_T1w	2	21
+Variables TOT Gender
+Input	sub-CC110033_T1w	1	7	1
+Input	sub-CC110037_T1w	1	5	1
+Input	sub-CC110045_T1w	1	9	2
+Input	sub-CC110056_T1w	1	10	2
+Input	sub-CC110069_T1w	1	0	2
+Input	sub-CC110087_T1w	1	14	2
+Input	sub-CC110101_T1w	1	12	1
+Input	sub-CC110126_T1w	1	17	2
+Input	sub-CC110174_T1w	1	9	2
+Input	sub-CC110182_T1w	1	16	2
+Input	sub-CC110187_T1w	1	3	2
+Input	sub-CC110319_T1w	1	7	2
+Input	sub-CC110411_T1w	1	6	1
+Input	sub-CC110606_T1w	1	6	1
+Input	sub-CC112141_T1w	1	14	1
+Input	sub-CC120008_T1w	1	5	1
+Input	sub-CC120049_T1w	1	4	1
+Input	sub-CC120061_T1w	1	8	1
+Input	sub-CC120065_T1w	1	15	2
+Input	sub-CC120120_T1w	1	8	1
+Input	sub-CC120123_T1w	1	3	2
+Input	sub-CC120166_T1w	1	2	1
+Input	sub-CC120182_T1w	1	13	1
+Input	sub-CC120218_T1w	1	3	2
+Input	sub-CC120264_T1w	1	9	1
+Input	sub-CC120276_T1w	1	6	2
+Input	sub-CC120286_T1w	1	11	1
+Input	sub-CC120309_T1w	1	4	1
+Input	sub-CC120313_T1w	1	8	1
+Input	sub-CC120319_T1w	1	20	2
+Input	sub-CC120347_T1w	1	10	2
+Input	sub-CC120376_T1w	1	8	2
+Input	sub-CC120409_T1w	1	2	1
+Input	sub-CC120469_T1w	1	1	2
+Input	sub-CC120470_T1w	1	1	2
+Input	sub-CC120550_T1w	1	7	1
+Input	sub-CC120727_T1w	1	3	2
+Input	sub-CC120764_T1w	1	21	1
+Input	sub-CC120795_T1w	1	18	1
+Input	sub-CC120987_T1w	1	10	2
+Input	sub-CC121106_T1w	1	24	2
+Input	sub-CC121144_T1w	1	16	1
+Input	sub-CC121158_T1w	1	16	2
+Input	sub-CC121200_T1w	1	5	2
+Input	sub-CC121317_T1w	1	13	2
+Input	sub-CC121397_T1w	1	9	1
+Input	sub-CC121411_T1w	1	6	2
+Input	sub-CC121428_T1w	1	11	2
+Input	sub-CC121479_T1w	1	15	2
+Input	sub-CC121685_T1w	1	4	1
+Input	sub-CC121795_T1w	1	6	2
+Input	sub-CC122172_T1w	1	7	1
+Input	sub-CC122405_T1w	1	19	1
+Input	sub-CC122620_T1w	1	11	2
+Input	sub-CC210148_T1w	1	11	2
+Input	sub-CC210250_T1w	1	13	1
+Input	sub-CC210519_T1w	1	7	2
+Input	sub-CC212153_T1w	1	9	2
+Input	sub-CC220115_T1w	1	9	2
+Input	sub-CC220151_T1w	1	4	1
+Input	sub-CC220352_T1w	1	10	2
+Input	sub-CC220518_T1w	1	10	1
+Input	sub-CC220519_T1w	1	5	2
+Input	sub-CC221033_T1w	1	4	2
+Input	sub-CC221373_T1w	1	5	1
+Input	sub-CC221648_T1w	1	10	2
+Input	sub-CC310008_T1w	2	18	1
+Input	sub-CC310086_T1w	2	6	2
+Input	sub-CC310142_T1w	2	13	1
+Input	sub-CC310214_T1w	2	7	2
+Input	sub-CC310224_T1w	2	19	2
+Input	sub-CC310252_T1w	2	26	1
+Input	sub-CC310385_T1w	2	13	1
+Input	sub-CC310402_T1w	2	11	2
+Input	sub-CC310450_T1w	2	6	2
+Input	sub-CC310463_T1w	2	15	2
+Input	sub-CC310473_T1w	2	4	1
+Input	sub-CC312058_T1w	2	7	1
+Input	sub-CC312222_T1w	2	11	2
+Input	sub-CC320002_T1w	2	16	1
+Input	sub-CC320059_T1w	2	6	1
+Input	sub-CC320089_T1w	2	9	2
+Input	sub-CC320107_T1w	2	16	1
+Input	sub-CC320160_T1w	2	3	2
+Input	sub-CC320202_T1w	2	7	1
+Input	sub-CC320206_T1w	2	8	1
+Input	sub-CC320218_T1w	2	13	2
+Input	sub-CC320359_T1w	2	12	1
+Input	sub-CC320379_T1w	2	13	1
+Input	sub-CC320429_T1w	2	9	1
+Input	sub-CC320500_T1w	2	17	1
+Input	sub-CC320553_T1w	2	11	2
+Input	sub-CC320576_T1w	2	14	2
+Input	sub-CC320608_T1w	2	15	1
+Input	sub-CC320621_T1w	2	21	2
+Input	sub-CC320636_T1w	2	10	1
+Input	sub-CC320698_T1w	2	3	2
+Input	sub-CC320776_T1w	2	6	1
+Input	sub-CC320850_T1w	2	8	2
+Input	sub-CC320870_T1w	2	19	2
+Input	sub-CC320888_T1w	2	12	2
+Input	sub-CC320893_T1w	2	14	2
+Input	sub-CC321281_T1w	2	6	2
+Input	sub-CC321331_T1w	2	23	1
+Input	sub-CC321368_T1w	2	13	1
+Input	sub-CC321431_T1w	2	8	2
+Input	sub-CC321464_T1w	2	10	1
+Input	sub-CC321880_T1w	2	14	2
+Input	sub-CC321899_T1w	2	6	2
+Input	sub-CC322186_T1w	2	17	1
+Input	sub-CC410015_T1w	2	16	2
+Input	sub-CC410032_T1w	2	6	1
+Input	sub-CC410040_T1w	2	10	1
+Input	sub-CC410094_T1w	2	7	2
+Input	sub-CC410097_T1w	2	7	2
+Input	sub-CC410113_T1w	2	24	1
+Input	sub-CC410121_T1w	2	4	2
+Input	sub-CC410169_T1w	2	8	2
+Input	sub-CC410173_T1w	2	15	1
+Input	sub-CC410182_T1w	2	2	2
+Input	sub-CC410220_T1w	2	7	2
+Input	sub-CC410222_T1w	2	8	2
+Input	sub-CC410251_T1w	2	2	2
+Input	sub-CC410284_T1w	2	18	2
+Input	sub-CC410323_T1w	2	4	2
+Input	sub-CC410325_T1w	2	20	2
+Input	sub-CC410354_T1w	2	15	1
+Input	sub-CC410432_T1w	2	7	1
+Input	sub-CC412004_T1w	2	9	1
+Input	sub-CC412021_T1w	2	17	2
+Input	sub-CC420071_T1w	2	3	2
+Input	sub-CC420075_T1w	2	23	1
+Input	sub-CC420089_T1w	2	18	2
+Input	sub-CC420091_T1w	2	29	1
+Input	sub-CC420143_T1w	2	4	2
+Input	sub-CC420149_T1w	2	10	1
+Input	sub-CC420162_T1w	2	3	2
+Input	sub-CC420173_T1w	2	16	2
+Input	sub-CC420182_T1w	2	18	2
+Input	sub-CC420197_T1w	2	13	2
+Input	sub-CC420204_T1w	2	29	2
+Input	sub-CC420217_T1w	2	23	1
+Input	sub-CC420222_T1w	2	27	1
+Input	sub-CC420226_T1w	2	11	1
+Input	sub-CC420231_T1w	2	6	1
+Input	sub-CC420236_T1w	2	13	1
+Input	sub-CC420241_T1w	2	6	1
+Input	sub-CC420259_T1w	2	7	2
+Input	sub-CC420260_T1w	2	12	2
+Input	sub-CC420261_T1w	2	16	2
+Input	sub-CC420286_T1w	2	7	1
+Input	sub-CC420322_T1w	2	20	1
+Input	sub-CC420324_T1w	2	19	2
+Input	sub-CC420356_T1w	2	10	1
+Input	sub-CC420383_T1w	2	20	2
+Input	sub-CC420396_T1w	2	23	1
+Input	sub-CC420402_T1w	2	19	1
+Input	sub-CC420412_T1w	2	17	1
+Input	sub-CC420433_T1w	2	8	1
+Input	sub-CC420435_T1w	2	14	2
+Input	sub-CC420462_T1w	2	24	2
+Input	sub-CC420493_T1w	2	9	2
+Input	sub-CC420566_T1w	2	9	2
+Input	sub-CC420582_T1w	2	14	1
+Input	sub-CC420589_T1w	2	10	1
+Input	sub-CC420623_T1w	2	12	1
+Input	sub-CC420776_T1w	2	27	2
+Input	sub-CC420888_T1w	2	21	2
 
