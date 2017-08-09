@@ -20,7 +20,7 @@ mri_glmfit \
 
 mri_glmfit-sim \
   --glmdir lh.g2v2 \
-  --cache 4 neg \
+  --cache 4 abs \
   --cwp  0.05 \
   --2spaces
 
@@ -43,28 +43,46 @@ mri_glmfit \
 
 mri_glmfit-sim \
   --glmdir rh.g2v2 \
-  --cache 4 neg \
+  --cache 4 abs \
   --cwp  0.05 \
   --2spaces
 
 
 
+
 ## Secondary commands (Visualization)
 export PROC_DIR=/home/asier/git/surface-kljajevic-17
-export HEMI="lh" # lh or rh
-export CONTRAST="group.diff" #contrast: group_x_gender or group.diff
-
+export HEMI="rh" # lh or rh
+export CONTRAST="group_x_gender" #contrast: group_x_gender or group.diff
+#export CONTRAST="group.diff" #contrast: group_x_gender or group.diff
 
 # After preproc
 mri_info $HEMI.g2v1.thickness.${FWHM}.mgh
 
 
 # After glmfit
-freeview -f $SUBJECTS_DIR/fsaverage/surf/$HEMI.inflated:annot=aparc.annot:annot_outline=1:overlay=$PROC_DIR/$HEMI.g2v2/$CONTRAST/sig.mgh:overlay_threshold=4,5 -viewport 3d &
+freeview -f $SUBJECTS_DIR/fsaverage/surf/$HEMI.inflated:annot=aparc.annot:annot_outline=1:overlay=$PROC_DIR/$HEMI.g2v2/$CONTRAST/sig.mgh:overlay_threshold=2,5 -viewport 3d &
 
 
 # After glmfit-sim
 less $PROC_DIR/$HEMI.g2v2/$CONTRAST/cache.th40.neg.sig.cluster.summary
 
 freeview -f $SUBJECTS_DIR/fsaverage/surf/$HEMI.inflated:overlay=$PROC_DIR/$HEMI.g2v2/$CONTRAST/cache.th40.neg.sig.cluster.mgh:overlay_threshold=2,5:annot=$PROC_DIR/$HEMI.g2v2/$CONTRAST/cache.th40.neg.sig.ocn.annot -viewport 3d
+
+
+# FDR correction
+mri_surfcluster --in $PROC_DIR/$HEMI.g2v2/$CONTRAST/sig.mgh \
+   --hemi rh --thmin 2 --thmax 5 --thsign pos \
+   --fdr 0.05 \
+   --minarea 5 --sum summaryfile_${HEMI}_${CONTRAST} \
+   --subject fsaverage --annot aparc --o /home
+
+
+
+
+
+
+
+
+
 
