@@ -53,7 +53,7 @@ mri_glmfit \
 ## Secondary commands (Visualization)
 export PROC_DIR=/home/asier/git/surface-kljajevic-17
 export HEMI="rh" # lh or rh
-export CONTRAST="group_x_gender" #contrast: group_x_gender or group.diff
+export CONTRAST="group.diff" #contrast: group_x_gender or group.diff
 
 
 # After preproc
