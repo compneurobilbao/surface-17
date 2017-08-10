@@ -1,6 +1,6 @@
 export SUBJECTS_DIR=/media/asier/Vanjas_Passport/FS_processed_data
 export LC_NUMERIC="en_US.UTF-8"
-export FWHM=10
+export FWHM=20
 
 ## LEFT HEMISPHERE
 mris_preproc --fsgd g2v2.fsgd \
@@ -18,11 +18,11 @@ mri_glmfit \
   --cortex \
   --glmdir lh.g2v2
 
-mri_glmfit-sim \
-  --glmdir lh.g2v2 \
-  --cache 4 abs \
-  --cwp  0.05 \
-  --2spaces
+#mri_glmfit-sim \
+#  --glmdir lh.g2v2 \
+#  --cache 4 abs \
+#  --cwp  0.05 \
+#  --2spaces
 
 
 ## RIGHT HEMISPHERE
@@ -41,11 +41,11 @@ mri_glmfit \
   --cortex \
   --glmdir rh.g2v2
 
-mri_glmfit-sim \
-  --glmdir rh.g2v2 \
-  --cache 4 abs \
-  --cwp  0.05 \
-  --2spaces
+#mri_glmfit-sim \
+#  --glmdir rh.g2v2 \
+#  --cache 2 pos \
+#  --cwp  0.05 \
+#  --2spaces
 
 
 
@@ -54,10 +54,10 @@ mri_glmfit-sim \
 export PROC_DIR=/home/asier/git/surface-kljajevic-17
 export HEMI="rh" # lh or rh
 export CONTRAST="group_x_gender" #contrast: group_x_gender or group.diff
-#export CONTRAST="group.diff" #contrast: group_x_gender or group.diff
+
 
 # After preproc
-mri_info $HEMI.g2v1.thickness.${FWHM}.mgh
+#mri_info $HEMI.g2v1.thickness.${FWHM}.mgh
 
 
 # After glmfit
@@ -65,17 +65,17 @@ freeview -f $SUBJECTS_DIR/fsaverage/surf/$HEMI.inflated:annot=aparc.annot:annot_
 
 
 # After glmfit-sim
-less $PROC_DIR/$HEMI.g2v2/$CONTRAST/cache.th40.neg.sig.cluster.summary
+#less $PROC_DIR/$HEMI.g2v2/$CONTRAST/cache.th20.pos.sig.cluster.summary #careful with pos. thXX.
 
-freeview -f $SUBJECTS_DIR/fsaverage/surf/$HEMI.inflated:overlay=$PROC_DIR/$HEMI.g2v2/$CONTRAST/cache.th40.neg.sig.cluster.mgh:overlay_threshold=2,5:annot=$PROC_DIR/$HEMI.g2v2/$CONTRAST/cache.th40.neg.sig.ocn.annot -viewport 3d
+#freeview -f $SUBJECTS_DIR/fsaverage/surf/$HEMI.inflated:overlay=$PROC_DIR/$HEMI.g2v2/$CONTRAST/#cache.th40.neg.sig.cluster.mgh:overlay_threshold=2,5:annot=$PROC_DIR/$HEMI.g2v2/$CONTRAST/#cache.th40.neg.sig.ocn.annot -viewport 3d
 
 
 # FDR correction
 mri_surfcluster --in $PROC_DIR/$HEMI.g2v2/$CONTRAST/sig.mgh \
-   --hemi rh --thmin 2 --thmax 5 --thsign pos \
+   --hemi $HEMI --thmin 2 --thmax 5 --thsign pos \
    --fdr 0.05 \
-   --minarea 5 --sum summaryfile_${HEMI}_${CONTRAST} \
-   --subject fsaverage --annot aparc --o /home
+   --minarea 5 --sum summaryfile_${HEMI}_${CONTRAST}_${FWHM} \
+   --subject fsaverage --annot aparc --o ./RES_${HEMI}_${CONTRAST}_${FWHM}
 
 
 
