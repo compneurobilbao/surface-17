@@ -10,7 +10,7 @@ except OSError:
     pass
 
 
-for file in os.listdir("./data"):
+for file in os.listdir("./data"): #change this
     subject = file[:-4]
 
     filey = ".job/%s.job" % subject
