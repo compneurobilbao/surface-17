@@ -11,32 +11,32 @@ from os.path import join as opj
 import shutil
 cwd = os.getcwd()
 
-data_path = opj(cwd, 'data')
+data_path = opj(cwd, 'data', 'raw', 'bids')
 
-
-for file in os.listdir(data_path):
-    
-    if file.endswith('.nii'):
-        subject = file[:-8]
-        
-        os.makedirs(opj(data_path, 'raw', 'bids', subject, 'ses-001', 'anat'))
-        shutil.move(opj(data_path, file), 
-                    opj(data_path, 'raw', 'bids', subject, 'ses-001', 'anat'))
-
-dwi_data_path = opj(cwd, 'dwi')
-
-for subject in os.listdir(dwi_data_path):
-    print(subject)
+# anat
+for subject in os.listdir(data_path):   
     try:
-        os.makedirs(opj(data_path, 'raw', 'bids', subject, 'ses-001', 'dwi'))
+        shutil.move(opj(data_path, subject, 'ses-001', 'anat',
+                        subject+'_T1w.nii'), 
+                    opj(data_path, subject, 'ses-001', 'anat',
+                        subject+'_ses-001_T1w.nii'))
     except:
         pass
-    
-    shutil.move(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.bval'),
-                opj(data_path, 'raw', 'bids', subject, 'ses-001', 'dwi'))
-    
-    shutil.move(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.bvec'), 
-                opj(data_path, 'raw', 'bids', subject, 'ses-001', 'dwi'))
-    
-    shutil.move(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.nii.gz'), 
-                opj(data_path, 'raw', 'bids', subject, 'ses-001', 'dwi'))
+
+# dwi
+for subject in os.listdir(data_path):
+    try:
+        shutil.move(opj(data_path, subject, 'ses-001', 'dwi',
+                        subject+'_dwi.nii.gz'), 
+                    opj(data_path, subject, 'ses-001', 'dwi',
+                        subject+'_ses-001_dwi.nii.gz'))
+        shutil.move(opj(data_path, subject, 'ses-001', 'dwi',
+                    subject+'_dwi.bval'), 
+                opj(data_path, subject, 'ses-001', 'dwi',
+                    subject+'_ses-001_dwi.bval'))
+        shutil.move(opj(data_path, subject, 'ses-001', 'dwi',
+                    subject+'_dwi.bvec'), 
+                opj(data_path, subject, 'ses-001', 'dwi',
+                    subject+'_ses-001_dwi.bvec'))
+    except:
+        pass
