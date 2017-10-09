@@ -13,7 +13,7 @@ cwd = os.getcwd()
 
 data_path = opj(cwd, 'data')
 
-
+# anat
 for file in os.listdir(data_path):
     
     if file.endswith('.nii'):
@@ -23,6 +23,7 @@ for file in os.listdir(data_path):
         shutil.move(opj(data_path, file), 
                     opj(data_path, 'raw', 'bids', subject, 'ses-001', 'anat'))
 
+# dwi
 dwi_data_path = opj(cwd, 'dwi')
 
 for subject in os.listdir(dwi_data_path):
@@ -40,3 +41,17 @@ for subject in os.listdir(dwi_data_path):
     
     shutil.move(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.nii.gz'), 
                 opj(data_path, 'raw', 'bids', subject, 'ses-001', 'dwi'))
+
+# fmri
+fmri_data_path = opj(cwd, 'fmri')
+
+for subject in os.listdir(fmri_data_path):
+    print(subject)
+    try:
+        os.makedirs(opj(data_path, 'raw', 'bids', subject, 'ses-001', 'func'))
+    except:
+        pass
+    
+    shutil.move(opj(fmri_data_path, subject, 'dwi', subject+'THIS!!!!'),
+                opj(data_path, 'raw', 'bids', subject, 'ses-001', 'func'))
+    

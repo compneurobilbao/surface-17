@@ -40,3 +40,21 @@ for subject in os.listdir(data_path):
                     subject+'_ses-001_dwi.bvec'))
     except:
         pass
+
+# fmri
+for subject in os.listdir(data_path):
+    try:
+        shutil.move(opj(data_path, subject, 'ses-001', 'dwi',
+                        subject+'_dwi.nii.gz'), 
+                    opj(data_path, subject, 'ses-001', 'dwi',
+                        subject+'_ses-001_dwi.nii.gz'))
+        shutil.move(opj(data_path, subject, 'ses-001', 'dwi',
+                    subject+'_dwi.bval'), 
+                opj(data_path, subject, 'ses-001', 'dwi',
+                    subject+'_ses-001_dwi.bval'))
+        shutil.move(opj(data_path, subject, 'ses-001', 'dwi',
+                    subject+'_dwi.bvec'), 
+                opj(data_path, subject, 'ses-001', 'dwi',
+                    subject+'_ses-001_dwi.bvec'))
+    except:
+        pass
