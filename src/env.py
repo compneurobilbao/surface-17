@@ -1,40 +1,15 @@
 # -*- coding: utf-8 -*-
+import os
+from os.path import join as opj
 
-DATA = '/home/asier/git/ruber/data/'
-RAW_DATA = '/home/asier/git/ruber/data/raw'
-BIDS_DATA = '/home/asier/git/ruber/data/raw/bids'
-HEUDICONV_BIN = '/home/asier/git/ruber/src/heudiconv/heudiconv'
-HEUDICONV_FOLDER = '/home/asier/git/ruber/src/heudiconv'
-SESSION_TYPES = ['presurg', 'postsurg1', 'postsurg2']
-ATLAS_TYPES = ['atlas_2514', 'atlas_2754']
+cwd = os.getcwd()
 
-CONFOUNDS_ID = ['FramewiseDisplacement',
-                'WhiteMatter',
-                'GlobalSignal',
-                'X',
-                'Y',
-                'Z',
-                'RotX',
-                'RotY',
-                'RotZ',
-                ]
-
-#CONFOUNDS_ID = ['FramewiseDisplacement',
-#                'aCompCor0',
-#                'aCompCor1',
-#                'aCompCor2',
-#                'aCompCor3',
-#                'aCompCor4',
-#                'aCompCor5',
-#                'X',
-#                'Y',
-#                'Z',
-#                'RotX',
-#                'RotY',
-#                'RotZ',
-#                ]
+DATA = opj(cwd, 'data')
+RAW_DATA = opj(DATA, 'raw')
+BIDS_DATA = opj(RAW_DATA, 'bids')
+SESSION_TYPES = ['ses-001']
+ATLAS_TYPES = ['atlas_2514']
 
 NEIGHBOURS = [0, 1]
 # TODO: this as iterable variable and convert pipeline to nipype
-ELECTRODE_SPHERE_SIZE = [2, 3]
-FRAMEWISE_DISP_THRES = 0.2  # For scrubbing
+ELECTRODE_SPHERE_SIZE = [2]

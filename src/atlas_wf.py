@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from src.preproc import run_fmriprep, run_mriqc
+from src.preproc import run_fmriprep
 
 from src.postproc.utils import atlas_to_t1
 
@@ -15,8 +15,8 @@ from src.dmri.utils import (correct_dwi_space_atlas,
                             )
 
 
-SUBJECT_LIST = ['sub-001']
-SESSION_LIST = ['ses-presurg']
+SUBJECT_LIST = ['sub-CC110033']
+SESSION_LIST = ['ses-001']
 
 """
 fmriprep and mriqc calls
@@ -26,7 +26,7 @@ run_fmriprep(SUBJECT_LIST, SESSION_LIST)
 
 # WARNING!! Execute permission change over files before continue
 # sudo chmod d------rwx -R $OUTPUT_DIR
-# sudo chmod 777 -R $OUTPUT_DIR
+# sudo chmod 777 -R $OUTPUT_DIR 
 
 
 """
