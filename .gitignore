@@ -1,7 +1,13 @@
-/data/*
+data/*
+processed_data/
 .spyproject/*
 .job/*
-/results/*
+results/*
 *rh*
 *lh*
+.out/
+dwi/
+processed_data_dwiZ/
 
+.xdebug_tksurfer
+surfer.log
