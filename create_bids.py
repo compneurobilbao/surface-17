@@ -43,7 +43,7 @@ for subject in os.listdir(dwi_data_path):
                 opj(data_path, 'raw', 'bids', subject, 'ses-001', 'dwi'))
 
 # fmri
-fmri_data_path = opj(cwd, 'fmri')
+fmri_data_path = opj(cwd, 'func')
 
 for subject in os.listdir(fmri_data_path):
     print(subject)
@@ -52,6 +52,8 @@ for subject in os.listdir(fmri_data_path):
     except:
         pass
     
-    shutil.move(opj(fmri_data_path, subject, 'dwi', subject+'THIS!!!!'),
+    shutil.move(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.nii.gz'),
                 opj(data_path, 'raw', 'bids', subject, 'ses-001', 'func'))
+    shutil.move(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.json'),
+            opj(data_path, 'raw', 'bids', subject, 'ses-001', 'func'))
     

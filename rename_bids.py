@@ -44,17 +44,13 @@ for subject in os.listdir(data_path):
 # fmri
 for subject in os.listdir(data_path):
     try:
-        shutil.move(opj(data_path, subject, 'ses-001', 'dwi',
-                        subject+'_dwi.nii.gz'), 
-                    opj(data_path, subject, 'ses-001', 'dwi',
-                        subject+'_ses-001_dwi.nii.gz'))
-        shutil.move(opj(data_path, subject, 'ses-001', 'dwi',
-                    subject+'_dwi.bval'), 
-                opj(data_path, subject, 'ses-001', 'dwi',
-                    subject+'_ses-001_dwi.bval'))
-        shutil.move(opj(data_path, subject, 'ses-001', 'dwi',
-                    subject+'_dwi.bvec'), 
-                opj(data_path, subject, 'ses-001', 'dwi',
-                    subject+'_ses-001_dwi.bvec'))
+        shutil.move(opj(data_path, subject, 'ses-001', 'func',
+                        subject+'_task-Rest_bold.nii.gz'), 
+                    opj(data_path, subject, 'ses-001', 'func',
+                        subject+'_task-rest_bold.nii.gz'))
+        shutil.move(opj(data_path, subject, 'ses-001', 'func',
+                    subject+'_task-Rest_bold.json'), 
+                opj(data_path, subject, 'ses-001', 'func',
+                    subject+'_ses-001_task-rest_bold.json'))
     except:
         pass
