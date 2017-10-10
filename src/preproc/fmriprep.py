@@ -26,15 +26,12 @@ def run_fmriprep(subject_list, session_list):
             print('Calculating: Subject ', sub, ' and session', ses)
 
             command = [
-                   'docker', 'run', '-i', '--rm',
-                   '-v', DATA_DIR + ':/data:ro',
-                   '-v', OUTPUT_DIR + ':/output',
-                   '-v', WORK_DIR + ':/work',
-                   '-w', '/work',
-                   'poldracklab/fmriprep:latest',
-                   '/data', '/output', 'participant',
+                   'singularity', 'run', '/home/asier/git/surface-kljajevic-17/fmriprep-sing.img/poldracklab_fmriprep_latest-2017-08-12-9147b730c142.img',
+                   DATA_DIR,
+                   OUTPUT_DIR,
+                   'participant',
                    '--participant_label', sub, #'-s', ses,
-                   '-w', '/work', '--no-freesurfer', '--ignore', 'fieldmaps',
+                   '-w', WORK_DIR, '--no-freesurfer', '--ignore', 'fieldmaps',
                    '--output-space', 'template',
                    '--template', 'MNI152NLin2009cAsym',
                 ]

@@ -25,7 +25,6 @@ fmriprep and mriqc calls
 run_fmriprep(SUBJECT_LIST, SESSION_LIST)
 
 # WARNING!! Execute permission change over files before continue
-# sudo chmod d------rwx -R $OUTPUT_DIR
 # sudo chmod 777 -R $OUTPUT_DIR 
 
 
