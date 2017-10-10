@@ -6,6 +6,7 @@ Created on Tue Apr 25 11:35:55 2017
 @author: asier
 """
 from src.env import BIDS_DATA, DATA
+import os
 import os.path as op
 from os.path import join as opj
 from src.postproc.utils import execute
@@ -26,7 +27,7 @@ def run_fmriprep(subject_list, session_list):
             print('Calculating: Subject ', sub, ' and session', ses)
 
             command = [
-                   'singularity', 'run', '/home/asier/git/surface-kljajevic-17/fmriprep-sing.img/poldracklab_fmriprep_latest-2017-08-12-9147b730c142.img',
+                   'singularity', 'run', opj(os.getcwd(), 'poldracklab_fmriprep_latest-2017-08-12-9147b730c142.img'),
                    DATA_DIR,
                    OUTPUT_DIR,
                    'participant',
