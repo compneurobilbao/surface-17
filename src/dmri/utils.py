@@ -170,17 +170,18 @@ def dti_acquisition_parameters(in_file, epi_factor=128):
     image = nib.load(in_file)
     n_volumes = image.shape[-1]
 
-    # read the value of the descrip field in the nifti header
-    descrip_field = image.header["descrip"].astype(str)[()]
-    descrip = dict([item.split("=", 1) for item in descrip_field.split(";")])
-
-    # assume by default phaseDir = '+'
-    phase_dir = descrip.get("phaseDir", '+')
-    pe_axis   = "0 1 0"
-    if phase_dir == "-":
-        pe_axis = "0 -1 0"
-
-    if 'phaseDir' not in descrip:
+    
+    try:
+        # read the value of the descrip field in the nifti header
+        descrip_field = image.header["descrip"].astype(str)[()]
+        descrip = dict([item.split("=", 1) for item in descrip_field.split(";")])
+    
+        # assume by default phaseDir = '+'
+        phase_dir = descrip.get("phaseDir", '+')
+        pe_axis   = "0 1 0"
+        if phase_dir == "-":
+            pe_axis = "0 -1 0"
+    except:
         warnings.warn("Could not find or understand the value for phaseDir: {}. "
                       "Using default PE axis {}.".format(descrip.get("phaseDir"), pe_axis),
                       category=RuntimeWarning, stacklevel=2)
@@ -193,8 +194,8 @@ def dti_acquisition_parameters(in_file, epi_factor=128):
     with open(acqp_file, "wt") as fout:
         fout.write("{} {}\n".format(pe_axis, total_readout_time))
 
-    with open(index_file, "wt") as fout:
-        fout.write("{}\n".format(" ".join(n_volumes * ["1"])))
+    with open(index_file, "wt") as fout2:
+        fout2.write("{}\n".format(" ".join(n_volumes * ["1"])))
 
     return op.abspath(acqp_file), op.abspath(index_file)
 

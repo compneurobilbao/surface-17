@@ -12,4 +12,6 @@ processed_data_dwiZ/
 .xdebug_tksurfer
 surfer.log
 fmriprep-sing.img/*
-*.pyc
+.pyc*
+*.pklz
+

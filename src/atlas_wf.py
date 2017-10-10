@@ -15,7 +15,7 @@ from src.dmri.utils import (correct_dwi_space_atlas,
                             )
 
 
-SUBJECT_LIST = ['sub-CC110033']
+SUBJECT_LIST = ['sub-CC110037']
 SESSION_LIST = ['ses-001']
 
 """
