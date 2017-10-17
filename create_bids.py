@@ -52,8 +52,11 @@ for subject in os.listdir(fmri_data_path):
     except:
         pass
     
-    shutil.move(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.nii.gz'),
+    try:
+        shutil.move(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.nii.gz'),
+                    opj(data_path, 'raw', 'bids', subject, 'ses-001', 'func'))
+        shutil.move(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.json'),
                 opj(data_path, 'raw', 'bids', subject, 'ses-001', 'func'))
-    shutil.move(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.json'),
-            opj(data_path, 'raw', 'bids', subject, 'ses-001', 'func'))
-    
+    except Exception as e:
+        print(e)
+        pass
