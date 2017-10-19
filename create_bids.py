@@ -14,14 +14,26 @@ cwd = os.getcwd()
 data_path = opj(cwd, 'data')
 
 # anat
-for file in os.listdir(data_path):
-    
-    if file.endswith('.nii'):
-        subject = file[:-8]
-        
+anat_data_path = opj(cwd, 'anat')
+
+for subject in os.listdir(anat_data_path):
+    print(subject)
+    try:
         os.makedirs(opj(data_path, 'raw', 'bids', subject, 'ses-001', 'anat'))
-        shutil.move(opj(data_path, file), 
+    except:
+        pass
+    
+    try:
+        shutil.move(opj(anat_data_path, subject, 'anat', subject+'_T1w.nii.gz'),
                     opj(data_path, 'raw', 'bids', subject, 'ses-001', 'anat'))
+    except:
+        pass
+  
+    try:
+        shutil.move(opj(anat_data_path, subject, 'dwi', subject+'_T1w.json'), 
+                    opj(data_path, 'raw', 'bids', subject, 'ses-001', 'anat'))
+    except:
+        pass
 
 # dwi
 dwi_data_path = opj(cwd, 'dwi')
@@ -92,7 +104,5 @@ bids_path = opj(cwd, 'data', 'raw', 'bids')
 layout = BIDSLayout(bids_path)
 files = layout.get(target='type')
 len([f.type for f in files if f.type == 'dwi'])/3 #648 OK
-len([f.type for f in files if f.type == 'T1w']) #174 NOT OK
-len([f.type for f in files if f.type == 'bold'])/2 #358 NOT OK
-
-
+len([f.type for f in files if f.type == 'T1w' and 'gz' in f.filename ]) #652 partially OK
+len([f.type for f in files if f.type == 'bold' and 'rest' in f.filename])/2 #647.5 partially OK
