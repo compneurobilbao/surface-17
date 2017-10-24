@@ -21,9 +21,11 @@ if __name__ == "__main__":
     layout = BIDSLayout(bids_path)
     
     subjects = layout.get_subjects()
+    subjects = ["sub-" + subject for subject in subjects]
+    subjects.remove('sub-CC110037') # already computed
     
     args = [tuple([sub])
-            for sub in subjects[10:11]]
+            for sub in subjects]
 
     pool = Pool()
     pool.map(main_workflow, args)
