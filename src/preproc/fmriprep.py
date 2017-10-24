@@ -27,12 +27,15 @@ def run_fmriprep(subject_list, session_list):
             print('Calculating: Subject ', sub, ' and session', ses)
 
             command = [
-                   'singularity', 'run', opj(os.getcwd(), 'poldracklab_fmriprep_latest-2017-08-12-9147b730c142.img'),
-                   DATA_DIR,
-                   OUTPUT_DIR,
-                   'participant',
+                   'docker', 'run', '-i', '--rm',
+                   '-v', DATA_DIR + ':/data:ro',
+                   '-v', OUTPUT_DIR + ':/output',
+                   '-v', WORK_DIR + ':/work',
+                   '-w', '/work',
+                   'poldracklab/fmriprep:latest',
+                   '/data', '/output', 'participant',
                    '--participant_label', sub, #'-s', ses,
-                   '-w', WORK_DIR, '--no-freesurfer', '--ignore', 'fieldmaps',
+                   '-w', '/work', '--no-freesurfer', '--ignore', 'fieldmaps',
                    '--output-space', 'template',
                    '--template', 'MNI152NLin2009cAsym',
                 ]
@@ -68,3 +71,28 @@ def run_mriqc(subject_list, session_list):
 
 
 # sudo chmod 777 -R $DATA
+
+
+#def run_fmriprep(subject_list, session_list):
+#
+#    sub_ses_comb = [[subject, session] for subject in subject_list
+#                    for session in session_list]
+#
+#    for sub, ses in sub_ses_comb:
+#        if not op.exists(op.join(OUTPUT_DIR, 'fmriprep', 'sub-' + sub,
+#                                 'ses-' + ses)):
+#            print('Calculating: Subject ', sub, ' and session', ses)
+#
+#            command = [
+#                   'singularity', 'run', opj(os.getcwd(), 'poldracklab_fmriprep_latest-2017-08-12-9147b730c142.img'),
+#                   DATA_DIR,
+#                   OUTPUT_DIR,
+#                   'participant',
+#                   '--participant_label', sub, #'-s', ses,
+#                   '-w', WORK_DIR, '--no-freesurfer', '--ignore', 'fieldmaps',
+#                   '--output-space', 'template',
+#                   '--template', 'MNI152NLin2009cAsym',
+#                ]
+#
+#            for output in execute(command):
+#                print(output)
