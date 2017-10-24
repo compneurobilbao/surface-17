@@ -169,27 +169,34 @@ def dti_acquisition_parameters(in_file, epi_factor=128):
 
     image = nib.load(in_file)
     n_volumes = image.shape[-1]
+    
+    # Let's give a fixed value for this dataset
+    pe_axis   = "0 1 0"
+#    try:
+#        # read the value of the descrip field in the nifti header
+#        descrip_field = image.header["descrip"].astype(str)[()]
+#        descrip = dict([item.split("=", 1) for item in descrip_field.split(";")])
+#    
+#        # assume by default phaseDir = '+'
+#        phase_dir = descrip.get("phaseDir", '+')
+#        if phase_dir == "-":
+#            pe_axis = "0 -1 0"
+#    except:
+#        warnings.warn("Could not find or understand the value for phaseDir: {}. "
+#                      "Using default PE axis {}.".format(descrip.get("phaseDir"), pe_axis),
+#                      category=RuntimeWarning, stacklevel=2)
+        
+    total_readout_time = (epi_factor - 1) * 0.33 * 1e-3
+#    try:
+#        # (number of phase-encode steps - 1) *
+#        # (echo spacing time in milliseconds) *
+#        # (seconds per millisecond)
+#        total_readout_time = (epi_factor - 1) * float(descrip["dwell"]) * 1e-3
+#    except:
+#        warnings.warn("Could not find or understand the value for dwell, using 0.33. ",
+#                      category=RuntimeWarning, stacklevel=2)    
 
     
-    try:
-        # read the value of the descrip field in the nifti header
-        descrip_field = image.header["descrip"].astype(str)[()]
-        descrip = dict([item.split("=", 1) for item in descrip_field.split(";")])
-    
-        # assume by default phaseDir = '+'
-        phase_dir = descrip.get("phaseDir", '+')
-        pe_axis   = "0 1 0"
-        if phase_dir == "-":
-            pe_axis = "0 -1 0"
-    except:
-        warnings.warn("Could not find or understand the value for phaseDir: {}. "
-                      "Using default PE axis {}.".format(descrip.get("phaseDir"), pe_axis),
-                      category=RuntimeWarning, stacklevel=2)
-
-    # (number of phase-encode steps - 1) *
-    # (echo spacing time in milliseconds) *
-    # (seconds per millisecond)
-    total_readout_time = (epi_factor - 1) * float(descrip["dwell"]) * 1e-3
 
     with open(acqp_file, "wt") as fout:
         fout.write("{} {}\n".format(pe_axis, total_readout_time))
