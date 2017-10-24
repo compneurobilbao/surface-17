@@ -245,7 +245,6 @@ def run_spm_fsl_dti_preprocessing(subject_list, session_list):
                                              ("anat_biascorr",  "dti_co_input.anat")
                                             ]),
                 (selectfiles,  coreg_dti_wf, [("atlas_2514", "dti_co_input.atlas_2514")]),
-                (selectfiles,  coreg_dti_wf, [("atlas_2754", "dti_co_input.atlas_2754")]),
                 (coreg_dti_wf, datasink,     [("dti_co_output.atlas_2514_diff", "diff.@atlas_2514")]),
                 (coreg_dti_wf, datasink, [("dti_co_output.anat_diff",       "diff.@anat_diff"),
                                            ("dti_co_output.brain_mask_diff", "diff.@brain_mask"),
