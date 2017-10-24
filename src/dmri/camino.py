@@ -67,8 +67,8 @@ def camino_tractography(wf_name="camino_tract"):
     -------
     wf: nipype Workflow
     """
-    in_fields  = ["diff", "bvec", "bval", "mask", "atlas_2514", "atlas_2754"]
-    out_fields = ["tensor", "tracks_2514", "tracks_2754","mean_fa", "fa"]
+    in_fields  = ["diff", "bvec", "bval", "mask", "atlas_2514"]
+    out_fields = ["tensor", "tracks_2514", "mean_fa", "fa"]
 #     "connectivity_2514","connectivity_2754", "trk_2514", "trk_2754"]
 
     tract_input  = pe.Node(IdentityInterface(fields=in_fields,
@@ -87,7 +87,6 @@ def camino_tractography(wf_name="camino_tract"):
     fa2nii = pe.Node(interface=misc.CreateNifti(), name='fa2nii')
 
     track_2514  = pe.Node(Track(inputmodel="dt", out_file="tracts.Bfloat_2514"), name="track_2514")
-    track_2754  = pe.Node(Track(inputmodel="dt", out_file="tracts.Bfloat_2754"), name="track_2754")
 #    conmat_2514 = pe.Node(Conmat(output_root="conmat_atlas_2514_"), name="conmat_2514")
 #    conmat_2754 = pe.Node(Conmat(output_root="conmat_atlas_2754_"), name="conmat_2754")
 #
@@ -125,9 +124,6 @@ def camino_tractography(wf_name="camino_tract"):
                 # tractography
                 (tract_input,   track_2514,            [("atlas_2514",                 "seed_file"   )]),
                 (dtifit,        track_2514,            [("tensor_fitted",         "in_file"     )]),
-                # tractography
-                (tract_input,   track_2754,            [("atlas_2754",                 "seed_file"   )]),
-                (dtifit,        track_2754,            [("tensor_fitted",         "in_file"     )]),
 
 
                 # convert FA data to NifTI
@@ -162,7 +158,6 @@ def camino_tractography(wf_name="camino_tract"):
                 (dtifit,        tract_output,     [("tensor_fitted",         "tensor"      )]),
                 (track_2514,         tract_output,     [("tracked",               "tracks_2514"      )]),
 #                (conmat_2514,        tract_output,     [("conmat_sc",             "connectivity_2514")]),
-                (track_2754,         tract_output,     [("tracked",               "tracks_2754"      )]),
 #                (conmat_2754,        tract_output,     [("conmat_sc",             "connectivity_2754")]),
 #                (trk_2514,        tract_output,     [("trackvis",             "trk_2514")]),
 #                (trk_2754,        tract_output,     [("trackvis",             "trk_2754")]),
@@ -218,7 +213,6 @@ def run_camino_tractography(subject_list, session_list):
                  'bvec_rotated': 'processed/diff/_session_id_{session_id}_subject_id_{subject_id}/{subject_id}_{session_id}_dwi_rotated.bvec',
                  'brain_mask_diff': 'processed/diff/_session_id_{session_id}_subject_id_{subject_id}/r{subject_id}_{session_id}_T1w_brainmask.nii',
                  'atlas_diff_2514': 'processed/diff/_session_id_{session_id}_subject_id_{subject_id}/r{subject_id}_{session_id}_atlas_2514.nii',
-                 'atlas_diff_2754': 'processed/diff/_session_id_{session_id}_subject_id_{subject_id}/r{subject_id}_{session_id}_atlas_2754.nii',
                  }
     selectfiles = pe.Node(SelectFiles(templates,
                                       base_directory=DATA),
@@ -242,13 +236,11 @@ def run_camino_tractography(subject_list, session_list):
                                          ("eddy_corr_file",  "tract_input.diff"),
                                          ("bvec_rotated",    "tract_input.bvec"),
                                          ("atlas_diff_2514", "tract_input.atlas_2514"),
-                                         ("atlas_diff_2754", "tract_input.atlas_2754")
                                          ]),
 
                 # output
                 (tract_wf, datasink, [("tract_output.tensor",       "tract.@tensor"),
                                       ("tract_output.tracks_2514",       "tract.@tracks_2514"),
-                                      ("tract_output.tracks_2754",       "tract.@tracks_2754"),
 #                                      ("tract_output.connectivity_2514", "tract.@connectivity_2514"),
 #                                      ("tract_output.connectivity_2754", "tract.@connectivity_2754"),
                                       ("tract_output.mean_fa",      "tract.@mean_fa"),
