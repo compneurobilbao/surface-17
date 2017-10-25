@@ -22,10 +22,9 @@ if __name__ == "__main__":
     
     subjects = layout.get_subjects()
     subjects = ["sub-" + subject for subject in subjects]
-    subjects.remove('sub-CC110037') # already computed
     
     args = [tuple([sub])
-            for sub in subjects]
+            for sub in subjects[0:1]]
 
     pool = Pool()
     pool.map(main_workflow, args)
