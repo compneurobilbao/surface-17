@@ -163,9 +163,10 @@ def dti_acquisition_parameters(in_file, epi_factor=128):
     import warnings
     import os.path as op
     import nibabel as nib
+    import tempfile
 
-    acqp_file = "diff.acqp"
-    index_file = "diff.index"
+    acqp_file = tempfile.mkstemp()[1]
+    index_file = tempfile.mkstemp()[1]
 
     image = nib.load(in_file)
     n_volumes = image.shape[-1]
