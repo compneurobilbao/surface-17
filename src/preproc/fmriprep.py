@@ -10,6 +10,7 @@ import os
 import os.path as op
 from os.path import join as opj
 from src.postproc.utils import execute
+import shutil as sh
 
 DATA_DIR = BIDS_DATA
 OUTPUT_DIR = opj(DATA, 'processed')
@@ -77,10 +78,10 @@ def run_fmriprep(subject_list, session_list):
 
     sub_ses_comb = [[subject, session] for subject in subject_list
                     for session in session_list]
-
     for sub, ses in sub_ses_comb:
-        if not op.exists(op.join(OUTPUT_DIR, 'fmriprep', 'sub-' + sub,
-                                 'ses-' + ses)):
+        output_dir = op.join(OUTPUT_DIR, 'fmriprep', sub, ses)
+
+        if not op.exists(output_dir):
             print('Calculating: Subject ', sub, ' and session', ses)
 
             command = [
@@ -97,3 +98,7 @@ def run_fmriprep(subject_list, session_list):
 
             for output in execute(command):
                 print(output)
+
+            os.makedirs(output_dir)
+            sh.move(op.join(OUTPUT_DIR, 'fmriprep', sub, 'anat'),op.join(output_dir,'anat'))
+            sh.move(op.join(OUTPUT_DIR, 'fmriprep', sub, 'func'),op.join(output_dir,'func'))
