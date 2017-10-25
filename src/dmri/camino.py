@@ -165,7 +165,7 @@ def camino_tractography(wf_name="camino_tract"):
     return wf
 
 
-def run_camino_tractography(subject_list, session_list):
+def run_camino_tractography(sub):
     """ Attach the Camino-based tractography workflow to the `main_wf`.
 
     Parameters
@@ -201,18 +201,16 @@ def run_camino_tractography(subject_list, session_list):
 
 
     # Infosource - a function free node to iterate over the list of subject names
-    infosource = pe.Node(IdentityInterface(fields=['subject_id',
-                                                   'session_id']),
+    infosource = pe.Node(IdentityInterface(fields=['subject_id']),
                          name="infosource")
-    infosource.iterables = [('subject_id', subject_list),
-                            ('session_id', session_list)]
+    infosource.iterables = [('subject_id', sub)]
 
     # SelectFiles
-    templates = {'eddy_corr_file': 'processed/diff/_session_id_{session_id}_subject_id_{subject_id}/eddy_corrected_denoised.nii.gz',
-                 'bval': 'raw/bids/{subject_id}/{session_id}/dwi/{subject_id}_{session_id}_dwi.bval',
-                 'bvec_rotated': 'processed/diff/_session_id_{session_id}_subject_id_{subject_id}/{subject_id}_{session_id}_dwi_rotated.bvec',
-                 'brain_mask_diff': 'processed/diff/_session_id_{session_id}_subject_id_{subject_id}/r{subject_id}_{session_id}_T1w_brainmask.nii',
-                 'atlas_diff_2514': 'processed/diff/_session_id_{session_id}_subject_id_{subject_id}/r{subject_id}_{session_id}_atlas_2514.nii',
+    templates = {'eddy_corr_file': 'processed/diff/_subject_id_{subject_id}/eddy_corrected_denoised.nii.gz',
+                 'bval': 'raw/bids/{subject_id}/dwi/{subject_id}_dwi.bval',
+                 'bvec_rotated': 'processed/diff/_subject_id_{subject_id}/{subject_id}_dwi_rotated.bvec',
+                 'brain_mask_diff': 'processed/diff/_subject_id_{subject_id}/r{subject_id}_T1w_brainmask.nii',
+                 'atlas_diff_2514': 'processed/diff/_subject_id_{subject_id}/r{subject_id}_atlas_2514.nii',
                  }
     selectfiles = pe.Node(SelectFiles(templates,
                                       base_directory=DATA),

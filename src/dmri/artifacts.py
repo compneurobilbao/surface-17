@@ -273,7 +273,7 @@ def dti_artifact_correction(wf_name="dti_artifact_correction"):
     return wf
 
 
-def run_dti_artifact_correction(subject_list, session_list):
+def run_dti_artifact_correction(sub):
     """ Attach the FSL-based diffusion MRI artifact detection and correction
     workflow to the `main_wf`.
 
@@ -307,16 +307,14 @@ def run_dti_artifact_correction(subject_list, session_list):
 
 
     # Infosource - a function free node to iterate over the list of subject names
-    infosource = pe.Node(IdentityInterface(fields=['subject_id',
-                                                   'session_id']),
+    infosource = pe.Node(IdentityInterface(fields=['subject_id']),
                          name="infosource")
-    infosource.iterables = [('subject_id', subject_list),
-                            ('session_id', session_list)]
+    infosource.iterables = [('subject_id', sub)]
     
     # SelectFiles
-    templates = {'diff': 'raw/bids/{subject_id}/{session_id}/dwi/{subject_id}_{session_id}_dwi.nii.gz',
-                 'bval': 'raw/bids/{subject_id}/{session_id}/dwi/{subject_id}_{session_id}_dwi.bval',
-                 'bvec': 'raw/bids/{subject_id}/{session_id}/dwi/{subject_id}_{session_id}_dwi.bvec'}
+    templates = {'diff': 'raw/bids/{subject_id}/dwi/{subject_id}_dwi.nii.gz',
+                 'bval': 'raw/bids/{subject_id}/dwi/{subject_id}_dwi.bval',
+                 'bvec': 'raw/bids/{subject_id}/dwi/{subject_id}_dwi.bvec'}
     selectfiles = pe.Node(SelectFiles(templates,
                                       base_directory=DATA),
                           name="selectfiles")

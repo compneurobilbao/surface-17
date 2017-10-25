@@ -13,14 +13,12 @@ from src.dmri.utils import (correct_dwi_space_atlas,
                             )
 
 
-def main_workflow(SUBJECT_LIST):
-    SESSION_LIST = ['ses-001']
-
+def main_workflow(sub):
     """
     fmriprep and mriqc calls
     """
 
-    run_fmriprep(SUBJECT_LIST, SESSION_LIST)
+    run_fmriprep(sub)
 
     # WARNING!! Execute permission change over files before continue
     # sudo chmod 777 -R $OUTPUT_DIR 
@@ -30,17 +28,17 @@ def main_workflow(SUBJECT_LIST):
     Atlas to T1w space
     """
     
-    atlas_to_t1(SUBJECT_LIST, SESSION_LIST)
+    atlas_to_t1(sub)
     
     """
     dMRI pipeline
     """
     
-    run_dti_artifact_correction(SUBJECT_LIST, SESSION_LIST)
+    run_dti_artifact_correction(sub)
     
-    run_spm_fsl_dti_preprocessing(SUBJECT_LIST, SESSION_LIST)
+    run_spm_fsl_dti_preprocessing(sub)
     
-    correct_dwi_space_atlas(SUBJECT_LIST, SESSION_LIST)
+    correct_dwi_space_atlas(sub)
     
-    run_camino_tractography(SUBJECT_LIST, SESSION_LIST)
+    run_camino_tractography(sub)
 

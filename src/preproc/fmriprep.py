@@ -17,81 +17,59 @@ OUTPUT_DIR = opj(DATA, 'processed')
 WORK_DIR = opj(DATA, 'interim')
 
 
-def run_fmriprep(subject_list, session_list):
-
-    sub_ses_comb = [[subject, session] for subject in subject_list
-                    for session in session_list]
-
-    for sub, ses in sub_ses_comb:
-        if not op.exists(op.join(OUTPUT_DIR, 'fmriprep', 'sub-' + sub,
-                                 'ses-' + ses)):
-            print('Calculating: Subject ', sub, ' and session', ses)
-
-            command = [
-                   'docker', 'run', '-i', '--rm',
-                   '-v', DATA_DIR + ':/data:ro',
-                   '-v', OUTPUT_DIR + ':/output',
-                   '-v', WORK_DIR + ':/work',
-                   '-w', '/work',
-                   'poldracklab/fmriprep:latest',
-                   '/data', '/output', 'participant',
-                   '--participant_label', sub, #'-s', ses,
-                   '-w', '/work', '--no-freesurfer', '--ignore', 'fieldmaps',
-                   '--output-space', 'template',
-                   '--template', 'MNI152NLin2009cAsym',
-                ]
-
-            for output in execute(command):
-                print(output)
+#def run_fmriprep(sub):
+#
+#    command = [
+#               'docker', 'run', '-i', '--rm',
+#               '-v', DATA_DIR + ':/data:ro',
+#               '-v', OUTPUT_DIR + ':/output',
+#               '-v', WORK_DIR + ':/work',
+#               '-w', '/work',
+#               'poldracklab/fmriprep:latest',
+#               '/data', '/output', 'participant',
+#               '--participant_label', sub,
+#               '-w', '/work', '--no-freesurfer', '--ignore', 'fieldmaps',
+#               '--output-space', 'template',
+#               '--template', 'MNI152NLin2009cAsym',
+#            ]
+#
+#    for output in execute(command):
+#        print(output)
 
 
-def run_mriqc(subject_list, session_list):
+def run_mriqc(sub):
 
-    sub_ses_comb = [[subject, session] for subject in subject_list
-                    for session in session_list]
+    command = [
+           'docker', 'run', '-i', '--rm',
+           '-v', DATA_DIR + ':/data:ro',
+           '-v', OUTPUT_DIR + ':/output',
+           '-v', WORK_DIR + ':/work',
+           '-w', '/work',
+           'poldracklab/mriqc:latest',
+           '/data', '/output', 'participant',
+           '--participant_label', sub,
+           '-w', '/work', '--verbose-reports',
+        ]
 
-    for sub, ses in sub_ses_comb:
-        if not op.exists(op.join(OUTPUT_DIR, 'fmriprep', 'sub-' + sub,
-                                 'ses-' + ses)):
-            print('Calculating: Subject ', sub, ' and session', ses)
-
-            command = [
-                   'docker', 'run', '-i', '--rm',
-                   '-v', DATA_DIR + ':/data:ro',
-                   '-v', OUTPUT_DIR + ':/output',
-                   '-v', WORK_DIR + ':/work',
-                   '-w', '/work',
-                   'poldracklab/mriqc:latest',
-                   '/data', '/output', 'participant',
-                   '--participant_label', sub, # '-s', ses,
-                   '-w', '/work', '--verbose-reports',
-                ]
-
-            for output in execute(command):
-                print(output)
+    for output in execute(command):
+        print(output)
 
 
 # sudo chmod 777 -R $DATA
 
 
-#def run_fmriprep(subject_list, session_list):
-#
-#    sub_ses_comb = [[subject, session] for subject in subject_list
-#                    for session in session_list]
-#    for sub, ses in sub_ses_comb:
-#        output_dir = op.join(OUTPUT_DIR, 'fmriprep', sub, ses)
-#
-#        if not op.exists(output_dir):
-#            print('Calculating: Subject ', sub, ' and session', ses)
-#
-#            command = [
-#                   'singularity', 'run', opj(os.getcwd(), 'fmriprep-sing.img',
-#                                             'poldracklab_fmriprep_latest-2017-08-12-9147b730c142.img'),
-#                   DATA_DIR,
-#                   OUTPUT_DIR,
-#                   'participant',
-#                   '--participant_label', sub, #'-s', ses,
-#                   '-w', WORK_DIR, '--no-freesurfer', '--ignore', 'fieldmaps',
-#                   '--output-space', 'template',
-#                   '--template', 'MNI152NLin2009cAsym',
-#                ]
+def run_fmriprep(sub):
+
+    command = [
+           'singularity', 'run', opj(os.getcwd(), 'fmriprep-sing.img',
+                                     'poldracklab_fmriprep_latest-2017-08-12-9147b730c142.img'),
+           DATA_DIR,
+           OUTPUT_DIR,
+           'participant',
+           '--participant_label', sub,
+           '-w', WORK_DIR, '--no-freesurfer', '--ignore', 'fieldmaps',
+           '--output-space', 'template',
+           '--template', 'MNI152NLin2009cAsym',
+        ]
+    for output in execute(command):
+        print(output)

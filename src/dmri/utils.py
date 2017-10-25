@@ -208,43 +208,39 @@ def dti_acquisition_parameters(in_file, epi_factor=128):
     return op.abspath(acqp_file), op.abspath(index_file)
 
 
-def correct_dwi_space_atlas(subject_list, session_list):
+def correct_dwi_space_atlas(sub):
     """
     Function to correct atlas after resampling (looses some rois),
     this function recovers those lost rois
     """
-    sub_ses_comb = [[subject, session] for subject in subject_list
-                    for session in session_list]
 
-    for sub, ses in sub_ses_comb:
-        for atlas in ATLAS_TYPES:
+    for atlas in ATLAS_TYPES:
 
-            atlas_old = opj(DATA, 'external',
-                            'bha_' + atlas + '_1mm_mni09c.nii.gz')
-            atlas_new = opj(DATA, 'processed', 'diff', '_session_id_' +
-                            ses + '_subject_id_' + sub,
-                            'r' + sub + '_' + ses + '_' + atlas + '.nii')
+        atlas_old = opj(DATA, 'external',
+                        'bha_' + atlas + '_1mm_mni09c.nii.gz')
+        atlas_new = opj(DATA, 'processed', 'diff', '_subject_id_' + sub,
+                        'r' + sub + '_' + atlas + '.nii')
 
-            atlas_new_img = nib.load(atlas_new)
-            m = atlas_new_img.affine[:3, :3]
+        atlas_new_img = nib.load(atlas_new)
+        m = atlas_new_img.affine[:3, :3]
 
-            atlas_old_data = nib.load(atlas_old).get_data()
-            atlas_old_data_rois = np.unique(atlas_old_data)
-            atlas_new_data = atlas_new_img.get_data()
-            atlas_new_data_rois = np.unique(atlas_new_data)
+        atlas_old_data = nib.load(atlas_old).get_data()
+        atlas_old_data_rois = np.unique(atlas_old_data)
+        atlas_new_data = atlas_new_img.get_data()
+        atlas_new_data_rois = np.unique(atlas_new_data)
 
-            diff_rois = np.setdiff1d(atlas_old_data_rois, atlas_new_data_rois)
+        diff_rois = np.setdiff1d(atlas_old_data_rois, atlas_new_data_rois)
 
-            for roi in diff_rois:
-                p = np.argwhere(atlas_old_data == roi)[0]
-                x, y, z = (np.round(np.diag(np.divide(p, m)))).astype(int)
-                atlas_new_data[x, y, z] = roi
+        for roi in diff_rois:
+            p = np.argwhere(atlas_old_data == roi)[0]
+            x, y, z = (np.round(np.diag(np.divide(p, m)))).astype(int)
+            atlas_new_data[x, y, z] = roi
 
-            atlas_new_data_img_corrected = nib.Nifti1Image(atlas_new_data,
-                                                           affine=atlas_new_img.affine)
-            os.remove(atlas_new)
-            nib.save(atlas_new_data_img_corrected,
-                     atlas_new)
+        atlas_new_data_img_corrected = nib.Nifti1Image(atlas_new_data,
+                                                       affine=atlas_new_img.affine)
+        os.remove(atlas_new)
+        nib.save(atlas_new_data_img_corrected,
+                 atlas_new)
 
 
 def compress_file_gz(path_file):
@@ -256,48 +252,45 @@ def compress_file_gz(path_file):
     return path_file + '.gz'
 
 
-def get_con_matrix_matlab(subject_list, session_list):
+def get_con_matrix_matlab(sub):
     """
     Function to get atlas-wise connectivity matrix. End-to-end fiber counting.
     Camino's workflow is not calculating end-to-end
     """
-    sub_ses_comb = [[subject, session] for subject in subject_list
-                    for session in session_list]
 
-    for sub, ses in sub_ses_comb:
-        for atlas in ATLAS_TYPES:
+    for atlas in ATLAS_TYPES:
 
-            num_nodes = atlas[-4:]
-            out_folder = opj(DATA, 'processed', 'tract',
-                             '_session_id_' + ses + '_subject_id_' + sub)
-            tracts_file = opj(out_folder, 'tracts.Bfloat_' + num_nodes)
-            reference_file = opj(DATA, 'processed', 'diff',
-                                 '_session_id_' + ses + '_subject_id_' + sub,
-                                 'eddy_corrected_avg_b0.nii.gz')
-            atlas_file = opj(DATA, 'processed', 'diff',
-                             '_session_id_' + ses + '_subject_id_' + sub,
-                             'r' + sub + '_' + ses + '_' + atlas + '.nii')
+        num_nodes = atlas[-4:]
+        out_folder = opj(DATA, 'processed', 'tract',
+                         '_subject_id_' + sub)
+        tracts_file = opj(out_folder, 'tracts.Bfloat_' + num_nodes)
+        reference_file = opj(DATA, 'processed', 'diff',
+                             '_subject_id_' + sub,
+                             'eddy_corrected_avg_b0.nii.gz')
+        atlas_file = opj(DATA, 'processed', 'diff',
+                         '_subject_id_' + sub,
+                         'r' + sub + '_' + atlas + '.nii')
 
-            try:
-                atlas_file = compress_file_gz(atlas_file)
-            except:
-                atlas_file = atlas_file + '.gz'
+        try:
+            atlas_file = compress_file_gz(atlas_file)
+        except:
+            atlas_file = atlas_file + '.gz'
 
-            matlab_path = opj(os.getcwd(), 'src', 'matlab')
+        matlab_path = opj(os.getcwd(), 'src', 'matlab')
 
-            # Extract brain from subject space
-            command = ["matlab",
-                       "-nodisplay",
-                       "-nojvm",
-                       "-r",
-                       "addpath(\'" + matlab_path + "\');" +
-                       "calc_cm(" +
-                       "\'" + tracts_file + "\'," +
-                       "\'" + reference_file + "\'," +
-                       "\'" + atlas_file + "\'," +
-                       "\'" + out_folder + "\'," +
-                       num_nodes +
-                       "); exit;"
-                       ]
-            for output in execute(command):
-                print(output)
+        # Extract brain from subject space
+        command = ["matlab",
+                   "-nodisplay",
+                   "-nojvm",
+                   "-r",
+                   "addpath(\'" + matlab_path + "\');" +
+                   "calc_cm(" +
+                   "\'" + tracts_file + "\'," +
+                   "\'" + reference_file + "\'," +
+                   "\'" + atlas_file + "\'," +
+                   "\'" + out_folder + "\'," +
+                   num_nodes +
+                   "); exit;"
+                   ]
+        for output in execute(command):
+            print(output)
