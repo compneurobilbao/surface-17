@@ -17,28 +17,27 @@ def main_workflow(sub):
     """
     fmriprep and mriqc calls
     """
-
-    run_fmriprep(sub)
+    run_fmriprep(sub[0])
 
     # WARNING!! Execute permission change over files before continue
     # sudo chmod 777 -R $OUTPUT_DIR 
     
     
-    """
-    Atlas to T1w space
-    """
-    
-    atlas_to_t1(sub)
-    
-    """
-    dMRI pipeline
-    """
-    
-    run_dti_artifact_correction(sub)
-    
-    run_spm_fsl_dti_preprocessing(sub)
-    
-    correct_dwi_space_atlas(sub)
-    
-    run_camino_tractography(sub)
-
+#    """
+#    Atlas to T1w space
+#    """
+#    
+#    atlas_to_t1(sub)
+#    
+#    """
+#    dMRI pipeline
+#    """
+#    
+#    run_dti_artifact_correction(sub)
+#    
+#    run_spm_fsl_dti_preprocessing(sub)
+#    
+#    correct_dwi_space_atlas(sub)
+#    
+#    run_camino_tractography(sub)
+#

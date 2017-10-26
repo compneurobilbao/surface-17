@@ -179,8 +179,8 @@ def run_spm_fsl_dti_preprocessing(sub):
 
 
     # Infosource - a function free node to iterate over the list of subject names
-    infosource = pe.Node(IdentityInterface(fields=['subject_id'),
-                  name="infosource")
+    infosource = pe.Node(IdentityInterface(fields=['subject_id']),
+                                           name="infosource")
     infosource.iterables = [('subject_id', sub)]
     
     # SelectFiles

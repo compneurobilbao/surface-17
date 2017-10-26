@@ -24,7 +24,7 @@ if __name__ == "__main__":
     subjects = ["sub-" + subject for subject in subjects]
     
     args = [tuple([sub])
-            for sub in subjects[0:1]]
+            for sub in subjects]
 
     pool = Pool()
     pool.map(main_workflow, args)

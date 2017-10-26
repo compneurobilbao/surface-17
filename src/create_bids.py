@@ -24,13 +24,13 @@ for subject in os.listdir(anat_data_path):
         pass
     
     try:
-        shutil.move(opj(anat_data_path, subject, 'anat', subject+'_T1w.nii'),
+        shutil.copy(opj(anat_data_path, subject, 'anat', subject+'_T1w.nii.gz'),
                     opj(data_path, 'raw', 'bids', subject, 'anat'))
     except:
         pass
   
     try:
-        shutil.move(opj(anat_data_path, subject, 'anat', subject+'_T1w.json'), 
+        shutil.copy(opj(anat_data_path, subject, 'anat', subject+'_T1w.json'), 
                     opj(data_path, 'raw', 'bids', subject, 'anat'))
     except:
         pass
@@ -45,13 +45,13 @@ for subject in os.listdir(dwi_data_path):
     except:
         pass
     
-    shutil.move(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.bval'),
+    shutil.copy(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.bval'),
                 opj(data_path, 'raw', 'bids', subject, 'dwi'))
     
-    shutil.move(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.bvec'), 
+    shutil.copy(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.bvec'), 
                 opj(data_path, 'raw', 'bids', subject, 'dwi'))
     
-    shutil.move(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.nii.gz'), 
+    shutil.copy(opj(dwi_data_path, subject, 'dwi', subject+'_dwi.nii.gz'), 
                 opj(data_path, 'raw', 'bids', subject, 'dwi'))
 
 # fmri
@@ -65,10 +65,10 @@ for subject in os.listdir(fmri_data_path):
         pass
     
     try:
-        shutil.move(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.nii.gz'),
+        shutil.copy(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.nii.gz'),
                     opj(data_path, 'raw', 'bids', subject, 'func'))
-        shutil.move(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.json'),
-                opj(data_path, 'raw', 'bids', subject, 'func'))
+        shutil.copy(opj(fmri_data_path, subject, 'func', subject+'_task-Rest_bold.json'),
+                    opj(data_path, 'raw', 'bids', subject, 'func'))
     except Exception as e:
         print(e)
         pass
