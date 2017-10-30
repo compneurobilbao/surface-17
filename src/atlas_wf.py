@@ -17,7 +17,7 @@ def main_workflow(sub):
     """
     fmriprep and mriqc calls
     """
-    run_fmriprep(sub[0])
+    run_fmriprep(sub)
 
     # WARNING!! Execute permission change over files before continue
     # sudo chmod 777 -R $OUTPUT_DIR 
