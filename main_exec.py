@@ -29,5 +29,5 @@ if __name__ == "__main__":
         try:
             main_workflow(subject)
         except:
-            with open("error_report.txt", "wt") as fout:
+            with open("error_report.txt", "a") as fout:
                 fout.write("error in {} \n".format(subject))

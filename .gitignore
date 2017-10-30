@@ -16,3 +16,4 @@ fmriprep-sing.img/*
 *.pklz
 
 __pycache__/
+*.txt
