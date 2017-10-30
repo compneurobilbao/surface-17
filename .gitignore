@@ -17,3 +17,4 @@ fmriprep-sing.img/*
 
 __pycache__/
 *.txt
+*.pyc
