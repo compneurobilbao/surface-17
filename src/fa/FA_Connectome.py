@@ -274,6 +274,7 @@ def main():
         import nipype.interfaces.utility as util
         import nipype.interfaces.fsl as fsl
         import nipype.interfaces.dipy as dipy
+        import nipype.interfaces.mrtrix3 as mrt3
         import nipype.interfaces.mrtrix as mrt
         from FA_Connectome import Extractb0 as extract_b0
         import nipype.interfaces.diffusion_toolkit as dtk
@@ -324,12 +325,12 @@ def main():
 
         # Fitting the diffusion tensor model
         dwi2tensor = pe.Node(interface=mrt.DWI2Tensor(), name='dwi2tensor')
-        tensor2vector = pe.Node(
-            interface=mrt.Tensor2Vector(), name='tensor2vector')
-        tensor2adc = pe.Node(
-            interface=mrt.Tensor2ApparentDiffusion(), name='tensor2adc')
-        tensor2fa = pe.Node(
-            interface=mrt.Tensor2FractionalAnisotropy(), name='tensor2fa')
+#        tensor2vector = pe.Node(
+#            interface=mrt.Tensor2Vector(), name='tensor2vector')
+#        tensor2adc = pe.Node(
+#            interface=mrt.Tensor2ApparentDiffusion(), name='tensor2adc')
+        tensor2metric = pe.Node(
+            interface=mrt3.TensorMetrics(), name='tensor2metric')
 
         # Create a brain mask
         bet = pe.Node(interface=fsl.BET(
@@ -406,9 +407,9 @@ def main():
         fa_connectome.connect(gunzip, 'out_file', dwi2tensor, 'in_file')
         fa_connectome.connect(fsl2mrtrix, 'encoding_file',
                               dwi2tensor, 'encoding_file')
-        fa_connectome.connect(dwi2tensor, 'tensor', tensor2vector, 'in_file')
-        fa_connectome.connect(dwi2tensor, 'tensor', tensor2adc, 'in_file')
-        fa_connectome.connect(dwi2tensor, 'tensor', tensor2fa, 'in_file')
+        #fa_connectome.connect(dwi2tensor, 'tensor', tensor2vector, 'in_file')
+        #fa_connectome.connect(dwi2tensor, 'tensor', tensor2adc, 'in_file')
+        fa_connectome.connect(dwi2tensor, 'tensor', tensor2metric, 'in_file')
 #        fa_connectome.connect(tensor2fa, 'FA', MRmult_merge, 'in1')
 #
 #        # Thresholding to create a mask of single fibre voxels
