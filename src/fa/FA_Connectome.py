@@ -330,7 +330,7 @@ def main():
 #        tensor2adc = pe.Node(
 #            interface=mrt.Tensor2ApparentDiffusion(), name='tensor2adc')
         tensor2metric = pe.Node(
-            interface=mrt3.TensorMetrics(), name='tensor2metric')
+            interface=mrt3.TensorMetrics(out_adc='adc.nii.gz', out_fa='fa.nii.gz'), name='tensor2metric')
 
         # Create a brain mask
         bet = pe.Node(interface=fsl.BET(
