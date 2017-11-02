@@ -6,11 +6,8 @@ Created on Tue Apr 25 11:35:55 2017
 @author: asier
 """
 from src.env import BIDS_DATA, DATA
-import os
-import os.path as op
 from os.path import join as opj
 from src.postproc.utils import execute
-import shutil as sh
 
 DATA_DIR = BIDS_DATA
 OUTPUT_DIR = opj(DATA, 'processed')
