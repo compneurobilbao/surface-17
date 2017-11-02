@@ -410,6 +410,7 @@ def main():
         #fa_connectome.connect(dwi2tensor, 'tensor', tensor2vector, 'in_file')
         #fa_connectome.connect(dwi2tensor, 'tensor', tensor2adc, 'in_file')
         fa_connectome.connect(dwi2tensor, 'tensor', tensor2metric, 'in_file')
+        fa_connectome.connect(bet, 'mask_file', tensor2metric, 'in_mask')
 #        fa_connectome.connect(tensor2fa, 'FA', MRmult_merge, 'in1')
 #
 #        # Thresholding to create a mask of single fibre voxels
