@@ -34,7 +34,8 @@ def FA2std(subject_list, base_directory, out_directory):
 
         # FA to Standard
         flt = pe.Node(
-                interface=fsl.FLIRT(cost_func='mutualinfo',
+                interface=fsl.FLIRT(dof=12,
+                                    cost_func='mutualinfo',
                                     reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
                                     name='flt')
 
