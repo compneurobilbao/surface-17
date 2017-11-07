@@ -35,7 +35,8 @@ def DTmeasures2std(subject_list, base_directory, out_directory):
                               name='selectfiles')
         selectfiles.inputs.base_directory = os.path.abspath(base_directory)
 
-        dti = pe.Node(interface=fsl.DTIFit())
+        dti = pe.Node(interface=fsl.DTIFit(),
+                      name='dti')
         calc_radial = pe.Node(interface=fsl.MultiImageMaths(op_string='-add %s -div 2',
                                                             out_file='radial_diff.nii.gz'))
         # FA to Standard
@@ -135,4 +136,3 @@ def main():
 if __name__ == '__main__':
     # main should return 0 for success, something else (usually 1) for error.
     sys.exit(main())
-
