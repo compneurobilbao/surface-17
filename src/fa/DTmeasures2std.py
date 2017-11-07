@@ -5,13 +5,6 @@ Created on Tue Nov  7 13:55:51 2017
 
 @author: asier
 """
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Nov  6 12:35:55 2017
-
-@author: asier
-"""
 import os
 import sys
 
@@ -51,14 +44,34 @@ def DTmeasures2std(subject_list, base_directory, out_directory):
                                              reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
                          name='flt_fa')
 
+        flt_md = pe.Node(interface=fsl.FLIRT(dof=12,
+                                             cost_func='mutualinfo',
+                                             reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
+                         name='flt_md')
+
+        flt_mo = pe.Node(interface=fsl.FLIRT(dof=12,
+                                             cost_func='mutualinfo',
+                                             reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
+                         name='flt_mo')
+
+        flt_l1 = pe.Node(interface=fsl.FLIRT(dof=12,
+                                             cost_func='mutualinfo',
+                                             reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
+                         name='flt_l1')
+
+        flt_rad = pe.Node(interface=fsl.FLIRT(dof=12,
+                                              cost_func='mutualinfo',
+                                              reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
+                          name='flt_rad')
+
         # ==================================================================
         # Setting up the workflow
         DTmeasures2std = pe.Workflow(name='DTmeasures2std')
 
         # Reading in files
         DTmeasures2std.connect(infosource, 'subject_id',
-                              selectfiles, 'subject_id')
-        
+                               selectfiles, 'subject_id')
+
         # Calc measures
         DTmeasures2std.connect(selectfiles, 'dwi',
                                dti, 'dwi')
@@ -76,14 +89,27 @@ def DTmeasures2std(subject_list, base_directory, out_directory):
 
         # FA
         DTmeasures2std.connect(dti, 'FA',
-                               flt_fa, 'in_file')  
-
+                               flt_fa, 'in_file')
+        # MD
         DTmeasures2std.connect(dti, 'MD',
-                               flt_md, 'in_file')  
+                               flt_md, 'in_file')
         DTmeasures2std.connect(flt_fa, 'out_matrix_file',
-                               flt_md, 'apply_xfm')                         
-
-
+                               flt_md, 'apply_xfm')
+        # MO
+        DTmeasures2std.connect(dti, 'MO',
+                               flt_mo, 'in_file')
+        DTmeasures2std.connect(flt_fa, 'out_matrix_file',
+                               flt_mo, 'apply_xfm')
+        # L! - Axial Diff
+        DTmeasures2std.connect(dti, 'L1',
+                               flt_l1, 'in_file')
+        DTmeasures2std.connect(flt_fa, 'out_matrix_file',
+                               flt_l1, 'apply_xfm')
+        # Rad diff
+        DTmeasures2std.connect(calc_radial, 'out_file',
+                               flt_rad, 'in_file')
+        DTmeasures2std.connect(flt_fa, 'out_matrix_file',
+                               flt_rad, 'apply_xfm')
 
         # Running the workflow
         DTmeasures2std.base_dir = os.path.abspath(out_directory)
