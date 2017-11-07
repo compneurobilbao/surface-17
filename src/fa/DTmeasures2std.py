@@ -38,7 +38,8 @@ def DTmeasures2std(subject_list, base_directory, out_directory):
         dti = pe.Node(interface=fsl.DTIFit(),
                       name='dti')
         calc_radial = pe.Node(interface=fsl.MultiImageMaths(op_string='-add %s -div 2',
-                                                            out_file='radial_diff.nii.gz'))
+                                                            out_file='radial_diff.nii.gz'),
+                              name='calc_radial')
         # FA to Standard
         flt_fa = pe.Node(interface=fsl.FLIRT(dof=12,
                                              cost_func='mutualinfo',
