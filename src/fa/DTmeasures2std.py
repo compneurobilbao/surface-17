@@ -48,22 +48,26 @@ def DTmeasures2std(subject_list, base_directory, out_directory):
 
         flt_md = pe.Node(interface=fsl.FLIRT(dof=12,
                                              cost_func='mutualinfo',
-                                             reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
+                                             reference='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz',
+                                             apply_xfm=True),
                          name='flt_md')
 
         flt_mo = pe.Node(interface=fsl.FLIRT(dof=12,
                                              cost_func='mutualinfo',
-                                             reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
+                                             reference='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz',
+                                             apply_xfm=True),
                          name='flt_mo')
 
         flt_l1 = pe.Node(interface=fsl.FLIRT(dof=12,
                                              cost_func='mutualinfo',
-                                             reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
+                                             reference='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz',
+                                             apply_xfm=True),
                          name='flt_l1')
 
         flt_rad = pe.Node(interface=fsl.FLIRT(dof=12,
                                               cost_func='mutualinfo',
-                                              reference ='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz'),
+                                              reference='/usr/share/fsl/5.0/data/standard/MNI152_T1_1mm_brain.nii.gz',
+                                              apply_xfm=True),
                           name='flt_rad')
 
         # ==================================================================
@@ -96,22 +100,22 @@ def DTmeasures2std(subject_list, base_directory, out_directory):
         DTmeasures2std.connect(dti, 'MD',
                                flt_md, 'in_file')
         DTmeasures2std.connect(flt_fa, 'out_matrix_file',
-                               flt_md, 'apply_xfm')
+                               flt_md, 'in_matrix_file')
         # MO
         DTmeasures2std.connect(dti, 'MO',
                                flt_mo, 'in_file')
         DTmeasures2std.connect(flt_fa, 'out_matrix_file',
-                               flt_mo, 'apply_xfm')
+                               flt_mo, 'in_matrix_file')
         # L! - Axial Diff
         DTmeasures2std.connect(dti, 'L1',
                                flt_l1, 'in_file')
         DTmeasures2std.connect(flt_fa, 'out_matrix_file',
-                               flt_l1, 'apply_xfm')
+                               flt_l1, 'in_matrix_file')
         # Rad diff
         DTmeasures2std.connect(calc_radial, 'out_file',
                                flt_rad, 'in_file')
         DTmeasures2std.connect(flt_fa, 'out_matrix_file',
-                               flt_rad, 'apply_xfm')
+                               flt_rad, 'in_matrix_file')
 
         # Running the workflow
         DTmeasures2std.base_dir = os.path.abspath(out_directory)
