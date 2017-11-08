@@ -214,19 +214,14 @@ def FA_connectome(subject_list, base_directory, out_directory):
     # Brain extraction
     fa_connectome.connect(extract_b0, 'out_file', bet, 'in_file')
 
-    # ==================================================================
-    # Reading in files
-    fa_connectome.connect(infosource, 'subject_id',
-                           selectfiles, 'subject_id')
-
     # Calc measures
-    fa_connectome.connect(selectfiles, 'dwi',
+    fa_connectome.connect(resample, 'out_file',
                            dti, 'dwi')
-    fa_connectome.connect(selectfiles, 'bvecs',
+    fa_connectome.connect(selectfiles, 'bvec',
                            dti, 'bvecs')
-    fa_connectome.connect(selectfiles, 'bvals',
+    fa_connectome.connect(selectfiles, 'bval',
                            dti, 'bvals')
-    fa_connectome.connect(selectfiles, 'mask',
+    fa_connectome.connect(bet, 'mask_file',
                            dti, 'mask')
     # Calc radial diff
     fa_connectome.connect(dti, 'L2',
