@@ -3,6 +3,10 @@ import os
 import sys
 
 
+def get_measure(file, mask, measure):
+
+
+    return result
 
 def FAstats(subject_list, base_directory, out_directory):
 
@@ -19,6 +23,21 @@ def FAstats(subject_list, base_directory, out_directory):
 ###############################################################################################
 #fslmaths 'image_1.nii.gz' -mas 'mask.nii.gz' 'output_image.nii.gz'        
 
+    measures = ['-s', '-m']
+    masks = []
+    modalities = ['fa', 'md', 'mo', 'l1', 'radial']
+
+    for subject in subject_list:
+        for modality in modalities:
+            # get input files
+            for mask in masks:
+                for measure in measures:
+                    
+                    result = get_measure(file, mask, measure)
+
+                    # save append subject, modality, mask_type and measure
+
+    
 def main():
     from os.path import join as opj
     from bids.grabbids import BIDSLayout
