@@ -41,7 +41,7 @@ for subject in subject_list:
         shutil.move(opj(input_directory,
                         '_subject_id_' + subject,
                         'flt_fa',
-                        'dtifit__L1_flirt.nii.gz'),
+                        'dtifit__FA_flirt.nii.gz'),
                     opj(out_directory, 'fa', subject+'_fa.nii.gz'))
     except:
         pass
