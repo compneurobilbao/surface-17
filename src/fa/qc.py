@@ -56,6 +56,6 @@ def QC_plots():
             plt.close()
 
         multipage(opj(out_directory,
-                      'QC_' + sub_acq + '.pdf'),
+                      'QC_' + acq_type + '.pdf'),
                   figures,
                   dpi=250)
